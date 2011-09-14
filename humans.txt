@@ -1,0 +1,15 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Owner: Rick Kattouf
+  Site: http://teamkattouf.com
+
+  Author: Mykel Nahorniak
+  Site: http://karmcity.com
+  Twitter: mvkel
+  Location: Baltimore, Maryland
+
+/* THANKS */
+  Names (& URL): Brian Sacawa - http://briansacawa.com
