@@ -97,7 +97,7 @@ textarea.contenteditable {-webkit-appearance: none;}
 */
 
 body,html {
-background: #33262e;
+background: #222;
 }
 h1 {
 background: #733230;
@@ -145,10 +145,13 @@ background: #6cc792;
 background: #33262E;
 }
 #tp_form, #workouts {
-background: url() center 10px no-repeat;
 padding: 100px 20px 20px 20px;
 margin: 0px auto;
 width: 280px;
+}
+
+#tp_form {
+	background: url(../img/informa-logo.png) center 10px no-repeat;
 }
 #workouts {
 	padding-top: 0;
@@ -172,8 +175,8 @@ textarea {
 }
 #tp_submit, #log_submit {
 cursor: pointer;
-background: #67B2A6;
-border: 1px solid #45867A;
+background: #FD0500;
+border: 1px solid #A80300;
 color: #fff;
 font-weight: bold;
 width: 280px;
@@ -251,6 +254,7 @@ only screen and (-webkit-min-device-pixel-ratio: 1.5),
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min-device-pixel-ratio: 1.5) {
 
+#tp_form{background:url(../img/informa-logo-retina.png) center 10px no-repeat;background-size:300px 100px;}
 
 
 }

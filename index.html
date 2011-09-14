@@ -57,48 +57,48 @@
         <form id="form" onsubmit="return false;">
           <fieldset>            
             <h2>Morning</h2>
-            <label><input type="number" name="morn_weight" min="90" max="500" placeholder="Weight" /></label>
-            <label><input type="number" name="morn_bf" min="3" max="75" placeholder="Body Fat %" /></label>
-            <label><input type="number" name="morn_bw" min="3" max="75" placeholder="Body Water %" /></label>
-            <label><textarea name="morn_comments" placeholder="Comments" /></textarea></label>
+            <label><input type="number" data-descriptor="Morning Weight" min="90" max="500" placeholder="Weight" /></label>
+            <label><input type="number" data-descriptor="Morning Body Fat %" min="3" max="75" placeholder="Body Fat %" /></label>
+            <label><input type="number" data-descriptor="Morning Body Water %" min="3" max="75" placeholder="Body Water %" /></label>
+            <label><textarea data-descriptor="Morning Comments" placeholder="Comments" /></textarea></label>
             
           </fieldset>
           <fieldset>
             <h2>Evening</h2>
-            <label><input type="number" name="eve_weight"  min="90" max="500" placeholder="Weight" /></label>
-            <label><input type="number" name="eve_bf"  min="3" max="75" placeholder="Body Fat %" /></label>
-            <label><input type="number" name="eve_bw"  min="3" max="75" placeholder="Body Water %" /></label>
-            <label><textarea name="eve_comments" placeholder="Comments" /></textarea></label>
+            <label><input type="number" data-descriptor="Evening Weight"  min="90" max="500" placeholder="Weight" /></label>
+            <label><input type="number" data-descriptor="Evening Body Fat %"  min="3" max="75" placeholder="Body Fat %" /></label>
+            <label><input type="number" data-descriptor="Evening Body Water %"  min="3" max="75" placeholder="Body Water %" /></label>
+            <label><textarea data-descriptor="Evening Comments" placeholder="Comments" /></textarea></label>
           </fieldset>
           <fieldset id="more_information">
             <h2>More Information</h2>
             <div class="extra_item">
-              <input type="checkbox" class="check_comment" name="supplements_comment" />
-              <input type="checkbox" name="supplements_done" />
-              <span>Supplements consumed</span>
-              <textarea name="supplements_textarea" class="x-textarea" placeholder="Comments" /></textarea>
+              <input type="checkbox" name="supplements_more_trigger" class="check_comment" />
+              <input type="checkbox" data-descriptor="All supplements consumed" />
+              <span>All Supplements Consumed</span>
+              <textarea data-descriptor="Supplement Comments" class="x-textarea" placeholder="Comments" /></textarea>
               
             </div>
 
             <div class="extra_item">
-              <input type="checkbox"class="check_comment" name="meals_comment" />
-              <input type="checkbox" name="meals_done" />
-              <span>All meals consumed</span>
-              <textarea name="meals_textarea" class="x-textarea" placeholder="Comments" /></textarea>
+              <input type="checkbox"  name="meals_more_trigger" class="check_comment" />
+              <input type="checkbox" data-descriptor="All meals consumed" />
+              <span>All Meals Consumed</span>
+              <textarea data-descriptor="Food Comments" class="x-textarea" placeholder="Comments" /></textarea>
               
             </div>
             
             <div class="extra_item">
-              <input type="checkbox" class="check_comment" name="hydrated_comment" />
-              <input type="checkbox" name="hydrated_done" />
-              <span>Properly hydrated</span>
-              <textarea name="hydrated_textarea" class="x-textarea" placeholder="Comments" /></textarea>
+              <input type="checkbox"  name="hydrated_more_trigger" class="check_comment" />
+              <input type="checkbox" data-descriptor="Properly hydrated" />
+              <span>Properly Hydrated</span>
+              <textarea data-descriptor="Hydration Comments" class="x-textarea" placeholder="Comments" /></textarea>
               
             </div>
           </fieldset>
           <fieldset>
             <h2>Sleep Quality</h2>
-            <input name="sleep_quality" type="range" min="0" max="10" />
+            <input data-descriptor="Sleep Quality" type="range" min="0" max="10" />
 
           <fieldset>
             <input type="submit" id="log_submit" value="Send Report">

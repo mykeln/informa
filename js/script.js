@@ -61,8 +61,8 @@ function toggleBackground(state){
     $('body').css('background-color', '#efefef');
     $('html').css('background-color', '#efefef');
   } else {
-    $('body').css('background-color', '#33262e');
-    $('html').css('background-color', '#33262e');
+    $('body').css('background-color', '#222');
+    $('html').css('background-color', '#222');
   }
 }
 
@@ -165,10 +165,7 @@ function checkData(xml){
 // END //
 /////////
 
-function submitBodyComp(username,password,bodycompdata){
-  // debug dates
-  // todaysDate = '08/01/11';
-
+function submitBodyComp(bodyCompData){
   // detecting if inside phonegap to not trigger proxy php
   var proxySet;
 
@@ -178,9 +175,7 @@ function submitBodyComp(username,password,bodycompdata){
     proxySet = "proxy.php";
   }
 
-	// setting bodyCompData
-	
-
+/*
   // path to the json we're pulling
   var logUrl = proxySet + "?username=" + username + "&password=" + password + "&byteData=" + bodyCompData;
 
@@ -195,8 +190,34 @@ function submitBodyComp(username,password,bodycompdata){
     success: checkData,
     error: function(){ errorWorkout("Couldn't grab!"); }
   });
+*/
+
+var email = "rick@rickkattouf.com";
+var subject = "Body composition for " + todaysDate;
+
+// validation checks
+// testing if email address was entered appropriately
+var emailRegex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+// if email validation checks out, send the email
+ if(email.length > 0 && emailRegex.test(email)){
+
+	console.log('sending mail to: ' + email);
+
+	// creating the email url that also contains the data
+	to_email = "mailto:" + email + "?subject=" + subject + "&body=" + bodyCompData;
+
+	// redirecting user to the email link
+	window.location.href = to_email;
+
+
+} else {
+	console.log('whoops, something is wrong with what the user input');
+	alert("Email address isn't in the correct format.")
 }
 
+
+}
 
 // showing the form, making sure workouts are hidden
 function showForm(){
@@ -216,98 +237,71 @@ $('#log_submit').click(function() {
 	
   $('#loading_message').slideDown('fast');
 
-	var byteData;
+	var bodyCompData = [] ;
 
-	// checking which variables are empty to compile byte data
-	// morning values
-	if($('[name=morn_weight]').length > 0) {
-		var morn_weight = $('[name=morn_weight]').val();
-		// append to byte data
-		byteData = morn_weight;
-	}
-	
-	if($('[name=morn_bf]').length > 0) {
-		var morn_bf = $('[name=morn_bf]').val();
-		// append to byte data
-		byteData = byteData + morn_bf;
-	}
-
-	if($('[name=morn_bw]').length > 0) {
-		var morn_bw = $('[name=morn_bw]').val();
-		// append to byte data
-		byteData = byteData + morn_bw;
-	}
-	
-	// evening values
-	if($('[name=eve_weight]').length > 0) {
-		var eve_weight = $('[name=eve_weight]').val();
-		// append to byte data
-		byteData = byteData + eve_weight;
-	}
-	
-	if($('[name=eve_bf]').length > 0) {
-		var eve_bf = $('[name=eve_bf]').val();
-		// append to byte data
-		byteData = byteData + eve_bf;
-	}
-	
-	if($('[name=eve_bw]').length > 0) {
-		var eve_bw = $('[name=eve_bw]').val();
-		// append to byte data
-		byteData = byteData + eve_bw;
-	}
-
-	// checkboxes 
-	if($('[name=supplements_done]').attr('checked')) {
-		var supplements_done = "Yes";
-	} else {
-		var supplements_done = "No";
-	}
-	
-	if($('[name=meals_done]').attr('checked')) {
-		var meals_done = "Yes";
-	} else {
-		var meals_done = "No";
-	}
-	
-	if($('[name=hydrated_done]').attr('checked')) {
-		var hydrated_done = "Yes";
-	} else {
-		var hydrated_done = "No";
-	}
+	// inputs
+	$('#workouts input[type="number"]').each(function(index) {
+		if($(this).val()){
+			// assigning variables for key/value based on data in form
+			var name = $(this).data('descriptor');
+			var value = $(this).val();
 		
-	// comments
-	if($('[name=morn_comments]').val()) {
-		var morn_comments = $('[name=morn_comments]').val();
-	}
-	
-	if($('[name=eve_comments]').val()) {
-		var eve_comments = $('[name=eve_comments]').val();
-	}
-	
-	if($('[name=supplements_textarea]').val()) {
-		var supplements_comment = $('[name=supplements_textarea]').val();
-	}
-	
-	if($('[name=meals_textarea]').val()) {
-		var meals_comment = $('[name=meals_textarea]').val();
-	}
-	
-	if($('[name=hydrated_textarea]').val()) {
-		var hydrated_comment = $('[name=hydrated_textarea]').val();
-	}
-
-	// sleep quality
-	if($('[name=sleep_quality]').val()) {
-		var sleep_quality = $('[name=sleep_quality]').val();
-	}
+			bodyCompData.push({'name':name,'value':value});
+						
+		}
+	});
 
 
-	// setting morning variables
-	console.log(byteData);
+	// checkboxes	
+	$('#workouts input:checked').each(function(index) {
+		if($(this).val()){
+			// assigning variables for key/value based on data in form
+			var name = $(this).data('descriptor');
+			var checked = $(this).attr('checked');
+			
+			if((name != "supplements_more_trigger") && (name != "meals_more_trigger") && (name != "hydrated_more_trigger")){
+				if(checked == true) {
+					bodyCompData.push({'name':name,'value':'Yes'});
+				}
+			}
+		}
+	});
 	
+	// sleep range
+	$('#workouts input[type="range"]').each(function(index) {
+		if($(this).val()){
+			// assigning variables for key/value based on data in form
+			var name = $(this).data('descriptor');
+			var value = $(this).val();
+		
+			bodyCompData.push({'name':name,'value':value});
+		}
+	});
+
+	// textareas 
+	$('#workouts textarea').each(function(index) {
+		if($(this).val()){
+			// assigning variables for key/value based on data in form
+			var name = $(this).data('descriptor');
+			var value = $(this).val();
+		
+			bodyCompData.push({'name':name,'value':value});
+		}
+
+	});
+	
+	// gathering items in the array and pulling them out into a single object
+	var singleData = {};
+	var finalObject = "";
+	
+	$.each(bodyCompData , function(i,e) {
+		singleData[e.name] = e.value;
+		
+		finalObject += e.name + ": " + singleData[e.name] + "<br />";		
+	});
+
 	// Once everything's checked out, submit it
-	//submitBodyComp(username,password,bodycompdata);
+	submitBodyComp(finalObject);
 
 });
 
