@@ -233,16 +233,39 @@ $('.check_comment').click(function(){
 // this is a terribly bad way to do it. for future versions, make it an each that enumerates
 $('#log_submit').click(function() {
 	
-  $('#loading_message').slideDown('fast');
+  //$('#loading_message').slideDown('fast');
 
 	var bodyCompData = [] ;
+	var name;
+	var value;
+	var checked;
 
-	// inputs
-	$('#workouts input[type="number"]').each(function(index) {
+	// morning inputs
+	name = "<b>Morning</b>";
+	value = "";
+	bodyCompData.push({'name':name,'value':value});
+	
+	$('#morning input[type="number"]').each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
-			var name = $(this).data('descriptor');
-			var value = $(this).val();
+			name = $(this).data('descriptor');
+			value = $(this).val();
+		
+			bodyCompData.push({'name':name,'value':value});
+						
+		}
+	});
+	
+	// evening inputs
+	name = "<br/><b>Evening</b>";
+	value = "";
+	bodyCompData.push({'name':name,'value':value});
+	
+	$('#evening input[type="number"]').each(function(index) {
+		if($(this).val()){
+			// assigning variables for key/value based on data in form
+			name = $(this).data('descriptor');
+			value = $(this).val();
 		
 			bodyCompData.push({'name':name,'value':value});
 						
@@ -250,40 +273,56 @@ $('#log_submit').click(function() {
 	});
 
 
-	// checkboxes	
-	$('#workouts input:checked').each(function(index) {
+	// checkboxes
+	name = "<br/><b>Plan Details</b>";
+	value = "";
+	bodyCompData.push({'name':name,'value':value});
+	
+	
+	$("#workouts input[type='checkbox']").not("[name$='trigger']").each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
-			var name = $(this).data('descriptor');
-			var checked = $(this).attr('checked');
+			name = $(this).data('descriptor');
+			checked = $(this).attr('checked');
 			
-			if((name != "supplements_more_trigger") && (name != "meals_more_trigger") && (name != "hydrated_more_trigger")){
-				if(checked == true) {
-					bodyCompData.push({'name':name,'value':'Yes'});
-				}
+			if(checked == true) {
+				value = "Yes"
+			} else {
+				value = "No";
 			}
+			
+			bodyCompData.push({'name':name,'value':value});
+			
 		}
 	});
 	
 	// sleep range
+	name = "<br/><b>Sleep</b>";
+	value = "";
+	bodyCompData.push({'name':name,'value':value});
+	
 	$('#workouts input[type="range"]').each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
-			var name = $(this).data('descriptor');
-			var value = $(this).val();
+			name = $(this).data('descriptor');
+			value = $(this).val();
 		
 			bodyCompData.push({'name':name,'value':value});
 		}
 	});
 
 	// textareas 
+	name = "<br/><b>Comments</b>";
+	value = "";
+	bodyCompData.push({'name':name,'value':value});
+	
 	$('#workouts textarea').each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
-			var name = $(this).data('descriptor');
-			var value = $(this).val();
+			name = $(this).data('descriptor');
+			value = $(this).val();
 		
-			bodyCompData.push({'name':name,'value':value});
+			bodyCompData.push({'name':name + "<br/>",'value':value});
 		}
 
 	});

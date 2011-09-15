@@ -56,20 +56,18 @@
       <div id="workouts">
 
         <form id="form" onsubmit="return false;">
-          <fieldset>            
+          <fieldset id="morning">            
             <h2>Morning</h2>
-            <label><input type="number" data-descriptor="Morning Weight" min="90" max="500" placeholder="Weight" /></label>
-            <label><input type="number" data-descriptor="Morning Body Fat %" min="3" max="75" placeholder="Body Fat %" /></label>
-            <label><input type="number" data-descriptor="Morning Body Water %" min="3" max="75" placeholder="Body Water %" /></label>
-            <label><textarea data-descriptor="Morning Comments" placeholder="Comments" /></textarea></label>
-            
+            <label><input type="number" data-descriptor="Weight" min="90" max="500" placeholder="Weight" /></label>
+            <label><input type="number" data-descriptor="Body Fat %" min="3" max="75" placeholder="Body Fat %" /></label>
+            <label><input type="number" data-descriptor="Body Water %" min="3" max="75" placeholder="Body Water %" /></label>            
           </fieldset>
-          <fieldset>
+          <fieldset id="evening">
             <h2>Evening</h2>
-            <label><input type="number" data-descriptor="Evening Weight"  min="90" max="500" placeholder="Weight" /></label>
-            <label><input type="number" data-descriptor="Evening Body Fat %"  min="3" max="75" placeholder="Body Fat %" /></label>
-            <label><input type="number" data-descriptor="Evening Body Water %"  min="3" max="75" placeholder="Body Water %" /></label>
-            <label><textarea data-descriptor="Evening Comments" placeholder="Comments" /></textarea></label>
+            <label><input type="number" data-descriptor="Weight"  min="90" max="500" placeholder="Weight" /></label>
+            <label><input type="number" data-descriptor="Body Fat %"  min="3" max="75" placeholder="Body Fat %" /></label>
+            <label><input type="number" data-descriptor="Body Water %"  min="3" max="75" placeholder="Body Water %" /></label>
+            <label><textarea data-descriptor="Comments" placeholder="Comments" /></textarea></label>
           </fieldset>
           <fieldset id="more_information">
             <h2>More Information</h2>
@@ -99,7 +97,7 @@
           </fieldset>
           <fieldset>
             <h2>Sleep Quality</h2>
-            <input data-descriptor="Sleep Quality" type="range" min="0" max="10" />
+            <input data-descriptor="Quality" type="range" min="0" max="10" />
 
           <fieldset>
             <input type="submit" id="log_submit" value="Send Report">
