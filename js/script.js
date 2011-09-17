@@ -49,10 +49,13 @@ function getCookie(name) {
   }
   return null;
 }
+
+// clears the user
 function deleteCookie(name) {
   setCookie(name,"",-1);
 }
 
+// changes background between logging in and exercise form
 function toggleBackground(state){
   if(state == false){
     // removing the background on the body and html
@@ -226,7 +229,8 @@ function showForm(){
 // showing comment field if the checkbox is clicked
 $('.check_comment').click(function(){
 	// must do next 3 times to step to the textarea element
-	$(this).next().next().next().slideToggle('fast');
+	(this).next().next().next().slideToggle('fast');
+	
 });
 
 // click handler. checks data submitted for errors, converts to byte data for trainingpeaks
@@ -361,6 +365,15 @@ $('#tp_submit').click(function() {
 	queryTrainingPeaks(username,password);
 
 });
+
+// updates sleep slider
+$("input[type=range]").change(function(){
+	var sleepValue = $("input[type=range]").val();
+	
+
+	$('#sleep_counter').html(sleepValue);
+});
+
 
 // removing the user, sending back to form
 $('#clear_user').click(function() {

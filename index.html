@@ -12,14 +12,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="cleartype" content="on">
   
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
-  <link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-startup-image" href="img/l/splash.png">
-    
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <link rel="apple-touch-startup-image" href="startup.png" />
+
+  <link rel="apple-touch-icon-precomposed" href="touch-icon-iphone.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icon-ipad.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-iphone4.png" />
+      
+  <link rel="shortcut icon" href="touch-icon-iphone.png">
+  
   <!-- styles --> 
   <link rel="stylesheet" href="css/style.css?v=1">
     
@@ -58,7 +61,7 @@
         <form id="form" onsubmit="return false;">
           <fieldset id="morning">            
             <h2>Morning</h2>
-            <label><input type="number" data-descriptor="Weight" min="90" max="500" placeholder="Weight" /></label>
+            <label><input type="tel" data-descriptor="Weight" min="90" max="500" placeholder="Weight" /></label>
             <label><input type="number" data-descriptor="Body Fat %" min="3" max="75" placeholder="Body Fat %" /></label>
             <label><input type="number" data-descriptor="Body Water %" min="3" max="75" placeholder="Body Water %" /></label>            
           </fieldset>
@@ -96,9 +99,9 @@
             </div>
           </fieldset>
           <fieldset>
-            <h2>Sleep Quality</h2>
-            <input data-descriptor="Quality" type="range" min="0" max="10" />
-
+            <h2>Sleep Quality<span id="sleep_counter">6</span></h2>
+            <input data-descriptor="Quality" type="range" min="1" max="10" />
+            
           <fieldset>
             <input type="submit" id="log_submit" value="Send Report">
           </fieldset>
