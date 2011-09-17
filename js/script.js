@@ -229,7 +229,7 @@ function showForm(){
 // showing comment field if the checkbox is clicked
 $('.check_comment').click(function(){
 	// must do next 3 times to step to the textarea element
-	(this).next().next().next().slideToggle('fast');
+	$(this).next().next().next().slideToggle('fast');
 	
 });
 
@@ -249,7 +249,7 @@ $('#log_submit').click(function() {
 	value = "";
 	bodyCompData.push({'name':name,'value':value});
 	
-	$('#morning input[type="number"]').each(function(index) {
+	$('#morning input[type="tel"]').each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
 			name = $(this).data('descriptor');
@@ -265,7 +265,7 @@ $('#log_submit').click(function() {
 	value = "";
 	bodyCompData.push({'name':name,'value':value});
 	
-	$('#evening input[type="number"]').each(function(index) {
+	$('#evening input[type="tel"]').each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
 			name = $(this).data('descriptor');
@@ -381,6 +381,8 @@ $('#clear_user').click(function() {
 });
 
 function clearUser(){
+	clearPersistentData();
+	
   deleteCookie('tp_username');
   deleteCookie('tp_password');
 
@@ -397,7 +399,9 @@ function clearUser(){
   $('[name=username]').val('');
   $('[name=password]').val('');
 
+
   showForm();
 }
+
 
 }); // end of document ready
