@@ -61,15 +61,39 @@
         <form id="form" onsubmit="return false;">
           <fieldset id="morning">            
             <h2>Morning</h2>
-            <label><input type="tel" data-descriptor="Weight" min="90" max="500" placeholder="Weight" /></label>
-            <label><input type="tel" data-descriptor="Body Fat %" min="3" max="75" placeholder="Body Fat %" /></label>
-            <label><input type="tel" data-descriptor="Body Water %" min="3" max="75" placeholder="Body Water %" /></label>            
+            <label>
+              <input type="tel" data-descriptor="Weight" min="90" max="500" maxlength="3" placeholder="Weight" autofocus />
+              <span class="point">.</span>
+              <input type="tel" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+            </label>
+            <label>
+              <input type="tel" data-descriptor="Body Fat %" min="3" max="75" maxlength="2" placeholder="Body Fat %" />
+              <span class="point">.</span>
+              <input type="tel" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+            </label>
+            <label>
+              <input type="tel" data-descriptor="Body Water %" min="3" max="75" maxlength="2" placeholder="Body Water %" />
+              <span class="point">.</span>
+              <input type="tel" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+            </label>            
           </fieldset>
           <fieldset id="evening">
             <h2>Evening</h2>
-            <label><input type="tel" data-descriptor="Weight"  min="90" max="500" placeholder="Weight" /></label>
-            <label><input type="tel" data-descriptor="Body Fat %"  min="3" max="75" placeholder="Body Fat %" /></label>
-            <label><input type="tel" data-descriptor="Body Water %"  min="3" max="75" placeholder="Body Water %" /></label>
+            <label>
+              <input type="tel" data-descriptor="Weight"  min="90" max="500" maxlength="3" placeholder="Weight" />
+              <span class="point">.</span>
+              <input type="tel" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+            </label>
+            <label>
+              <input type="tel" data-descriptor="Body Fat %"  min="3" max="75" maxlength="2" placeholder="Body Fat %" />
+              <span class="point">.</span>
+              <input type="tel" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+            </label>
+            <label>
+              <input type="tel" data-descriptor="Body Water %"  min="3" max="75" maxlength="2" placeholder="Body Water %" />
+              <span class="point">.</span>
+              <input type="tel" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+            </label>
             <label><textarea data-descriptor="Comments" placeholder="Comments" /></textarea></label>
           </fieldset>
           <fieldset id="more_information">

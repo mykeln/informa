@@ -249,11 +249,19 @@ $('#log_submit').click(function() {
 	value = "";
 	bodyCompData.push({'name':name,'value':value});
 	
-	$('#morning input[type="tel"]').each(function(index) {
+	$('#morning input[type="tel"]').not(".decimal").each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
 			name = $(this).data('descriptor');
+			// setting value of input
 			value = $(this).val();
+			// checking if a decimal value was added
+			decimalvalue = $(this).next().next().val();
+			
+			// if a decimal value exists, append it to the value before it gets pushed
+			if(decimalvalue) {
+				value =+ value + "." + decimalvalue;
+			}
 		
 			bodyCompData.push({'name':name,'value':value});
 						
@@ -265,11 +273,19 @@ $('#log_submit').click(function() {
 	value = "";
 	bodyCompData.push({'name':name,'value':value});
 	
-	$('#evening input[type="tel"]').each(function(index) {
+	$('#evening input[type="tel"]').not(".decimal").each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
 			name = $(this).data('descriptor');
+			// setting value of input
 			value = $(this).val();
+			// checking if a decimal value was added
+			decimalvalue = $(this).next().next().val();
+			
+			// if a decimal value exists, append it to the value before it gets pushed
+			if(decimalvalue) {
+				value =+ value + "." + decimalvalue;
+			}
 		
 			bodyCompData.push({'name':name,'value':value});
 						

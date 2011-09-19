@@ -182,8 +182,16 @@ margin: 10px auto 0px auto;
 textarea {
 	font-size: 12px;
 	padding: 5px;
-	width: 270px;
+	width: 268px;
 }
+input[type='tel'] {
+	width: 150px;
+}
+
+input[type='tel'].decimal {
+	width: 67px;
+}
+
 input[type='range'] {  
 	-webkit-appearance: none;  
   background-color: gray;
@@ -266,6 +274,14 @@ color: #444;
 	border-bottom: 1px solid #ccc;
 	padding: 0px 0px;
 	margin: 2px 0px;
+}
+
+.point {
+	line-height: 50px;
+	font-size: 40px;
+	position: relative;
+	top: 15px;
+	color: #666;
 }
 
 /* CSS MQ */
