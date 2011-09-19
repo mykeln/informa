@@ -1,15 +1,20 @@
 CACHE MANIFEST
 # version 1
-img/l/apple-touch-icon.png
-img/l/apple-touch-icon-precomposed.png
-img/l/splash.png
-img/m/apple-touch-icon.png
-img/h/apple-touch-icon.png
-img/h/splash.png
+touch-icon-iphone.png
+touch-icon-iphone4.png
+touch-icon-ipad.png
+startup.png
+img/icon_actions.png
+img/informa-logo.png
+img/informa-logo-retina.png
 css/style.css
 js/libs/jquery-1.5.1.min.js
+js/libs/bookmark_bubble.js
+js/libs/date.js
 js/libs/modernizr-custom.js
 js/libs/respond.min.js
+js/mylibs/helper.js
+js/script.js
 
 NETWORK:
 #http://example.com/api/
