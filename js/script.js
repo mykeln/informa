@@ -117,7 +117,7 @@ function showDietForm(){
   toggleBackground(false);
 
   // hiding the form, showing the workout
-  $("#workouts").show();
+  $("#workouts").fadeIn('fast');
   $("#tp_form").hide();
 
   $('#loading_message').slideUp('fast');
@@ -232,7 +232,14 @@ var emailRegex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4}
 // showing the form, making sure workouts are hidden
 function showForm(){
   $("#workouts").hide();
-  $("#tp_form").show();
+
+	$("#tp_form")
+	  .css('opacity', 0)
+	  .slideDown('slow')
+	  .animate(
+	    { opacity: 1 },
+	    { queue: false, duration: 'slow' }
+	  );
 }
 
 // showing comment field if the checkbox is clicked
@@ -360,7 +367,7 @@ $('#log_submit').click(function() {
 // click handler. assigns cookie, passes cookie variables to the queryTrainingPeaks function
 $('#tp_submit').click(function() {
   if((!$('[name=username]').val() || (!$('[name=password]').val()))) {
-    alert('Watts needs a username and password.')
+    alert('Informa needs a username and password.')
     return false;
   }
 
