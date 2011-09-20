@@ -236,7 +236,7 @@ function showForm(){
 }
 
 // showing comment field if the checkbox is clicked
-$('.check_comment').tappable(function(){
+$('.check_comment').click(function(){
 	// must do next 3 times to step to the textarea element
 	$(this).next().next().next().slideToggle('fast');
   
@@ -245,7 +245,7 @@ $('.check_comment').tappable(function(){
 
 // click handler. checks data submitted for errors, converts to byte data for trainingpeaks
 // this is a terribly bad way to do it. for future versions, make it an each that enumerates
-$('#log_submit').tappable(function() {
+$('#log_submit').click(function() {
 	
 	var bodyCompData = [] ;
 	var name;
@@ -257,19 +257,12 @@ $('#log_submit').tappable(function() {
 	value = "";
 	bodyCompData.push({'name':name,'value':value});
 	
-	$('#morning input[type="tel"]').not(".decimal").each(function(index) {
+	$('#morning input[type="number"]').each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
 			name = $(this).data('descriptor');
 			// setting value of input
 			value = $(this).val();
-			// checking if a decimal value was added
-			decimalvalue = $(this).next().next().val();
-			
-			// if a decimal value exists, append it to the value before it gets pushed
-			if(decimalvalue) {
-				value =+ value + "." + decimalvalue;
-			}
 		
 			bodyCompData.push({'name':name,'value':value});
 						
@@ -281,19 +274,12 @@ $('#log_submit').tappable(function() {
 	value = "";
 	bodyCompData.push({'name':name,'value':value});
 	
-	$('#evening input[type="tel"]').not(".decimal").each(function(index) {
+	$('#evening input[type="number"]').each(function(index) {
 		if($(this).val()){
 			// assigning variables for key/value based on data in form
 			name = $(this).data('descriptor');
 			// setting value of input
 			value = $(this).val();
-			// checking if a decimal value was added
-			decimalvalue = $(this).next().next().val();
-			
-			// if a decimal value exists, append it to the value before it gets pushed
-			if(decimalvalue) {
-				value =+ value + "." + decimalvalue;
-			}
 		
 			bodyCompData.push({'name':name,'value':value});
 						
@@ -372,7 +358,7 @@ $('#log_submit').tappable(function() {
 
 
 // click handler. assigns cookie, passes cookie variables to the queryTrainingPeaks function
-$('#tp_submit').tappable(function() {
+$('#tp_submit').click(function() {
   if((!$('[name=username]').val() || (!$('[name=password]').val()))) {
     alert('Watts needs a username and password.')
     return false;
@@ -400,7 +386,7 @@ $("input[type=range]").change(function(){
 
 
 // removing the user, sending back to form
-$('#clear_user').tappable(function() {
+$('#clear_user').click(function() {
   clearUser();
 });
 

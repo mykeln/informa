@@ -60,37 +60,37 @@
           <fieldset id="morning">            
             <h2>Morning</h2>
             <label>
-              <input type="tel" pattern="\d*" data-descriptor="Weight" min="90" max="500" step="0.000001" maxlength="3" placeholder="Weight" autofocus />
-              <span class="point">.</span>
-              <input type="tel" pattern="\d*" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+              <input type="number" data-descriptor="Weight" min="90" max="500" step="0.000001" maxlength="3" placeholder="Weight" autofocus />
+              
+              
             </label>
             <label>
-              <input type="tel" pattern="\d*" data-descriptor="Body Fat %" min="3" max="75" maxlength="2" placeholder="Body Fat %" />
-              <span class="point">.</span>
-              <input type="tel" pattern="\d*" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+              <input type="number" data-descriptor="Body Fat %" min="3" max="75" maxlength="2" placeholder="Body Fat %" />
+              
+              
             </label>
             <label>
-              <input type="tel" pattern="\d*" data-descriptor="Body Water %" min="3" max="75" maxlength="2" placeholder="Body Water %" />
-              <span class="point">.</span>
-              <input type="tel" pattern="\d*" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+              <input type="number" data-descriptor="Body Water %" min="3" max="75" maxlength="2" placeholder="Body Water %" />
+              
+              
             </label>            
           </fieldset>
           <fieldset id="evening">
             <h2>Evening</h2>
             <label>
-              <input type="tel" pattern="\d*" data-descriptor="Weight"  min="90" max="500" maxlength="3" placeholder="Weight" />
-              <span class="point">.</span>
-              <input type="tel" pattern="\d*" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+              <input type="number" data-descriptor="Weight"  min="90" max="500" maxlength="3" placeholder="Weight" />
+              
+              
             </label>
             <label>
-              <input type="tel" pattern="\d*" data-descriptor="Body Fat %"  min="3" max="75" maxlength="2" placeholder="Body Fat %" />
-              <span class="point">.</span>
-              <input type="tel" pattern="\d*" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+              <input type="number" data-descriptor="Body Fat %"  min="3" max="75" maxlength="2" placeholder="Body Fat %" />
+              
+              
             </label>
             <label>
-              <input type="tel" pattern="\d*" data-descriptor="Body Water %"  min="3" max="75" maxlength="2" placeholder="Body Water %" />
-              <span class="point">.</span>
-              <input type="tel" pattern="\d*" class="decimal" min="00" max="99" maxlength="2" placeholder="0" />
+              <input type="number" data-descriptor="Body Water %"  min="3" max="75" maxlength="2" placeholder="Body Water %" />
+              
+              
             </label>
             <label><textarea data-descriptor="Comments" placeholder="Comments" /></textarea></label>
           </fieldset>
@@ -145,7 +145,6 @@
   <!-- other scripts -->
   <script src="js/libs/date.js"></script>
   <script src="js/libs/bookmark_bubble.js"></script>
-  <script src="js/libs/jquery.tappable.js"></script>
   
   
   <!-- scripts concatenated and minified via ant build script -->

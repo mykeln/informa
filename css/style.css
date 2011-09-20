@@ -185,12 +185,8 @@ textarea {
 	width: 268px;
 	
 }
-input[type='tel'] {
-	width: 150px;
-}
-
-input[type='tel'].decimal {
-	width: 67px;
+input[type='number'] {
+	width: 258px;
 }
 
 input[type='range'] {  
