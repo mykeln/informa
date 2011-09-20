@@ -125,7 +125,7 @@ font: Bold 25px/28px "Helvetica Neue",helvetica,arial,sans-serif;
 padding: 5px;
 }
 h4 a {
-color: red;
+color: #FF5757;
 text-decoration: none;
 margin-left: 10px;
 }
@@ -151,7 +151,7 @@ background: #6cc792;
 background: #33262E;
 }
 #tp_form, #workouts {
-padding: 100px 20px 20px 20px;
+padding: 110px 20px 20px 20px;
 margin: 0px auto;
 width: 280px;
 }
@@ -212,8 +212,8 @@ input[type='range']::-webkit-slider-thumb {
 
 #tp_submit, #log_submit {
 cursor: pointer;
-background: #FD0500;
-border: 1px solid #A80300;
+background: #FF5757;
+border: 1px solid #FF8B8B;
 color: #fff;
 font-weight: bold;
 width: 280px;

@@ -30,6 +30,13 @@ var xmlDateToJavascriptDate = function(xmlDate) {
   var utcDate = Date.UTC(year, month, day, hour, minute, second, (milli || 0));
   return new Date(utcDate);
 }  
+
+// simulating a keypress (in informa's case, a decimal)
+function simulateKeyPress(character) {
+  jQuery.event.trigger({ type : 'keypress', which : character.charCodeAt(0) });
+}
+
+// setting user cookie
 function setCookie(name,value,days) {
   if (days) {
     var date = new Date();
@@ -39,6 +46,8 @@ function setCookie(name,value,days) {
   else var expires = "";
   document.cookie = name+"="+value+expires+"; path=/";
 }
+
+// getting a user cookie
 function getCookie(name) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
@@ -227,15 +236,16 @@ function showForm(){
 }
 
 // showing comment field if the checkbox is clicked
-$('.check_comment').click(function(){
+$('.check_comment').tappable(function(){
 	// must do next 3 times to step to the textarea element
-	$(this).next().slideToggle('fast');
+	$(this).next().next().next().slideToggle('fast');
   
 });
 
+
 // click handler. checks data submitted for errors, converts to byte data for trainingpeaks
 // this is a terribly bad way to do it. for future versions, make it an each that enumerates
-$('#log_submit').click(function() {
+$('#log_submit').tappable(function() {
 	
 	var bodyCompData = [] ;
 	var name;
@@ -362,7 +372,7 @@ $('#log_submit').click(function() {
 
 
 // click handler. assigns cookie, passes cookie variables to the queryTrainingPeaks function
-$('#tp_submit').click(function() {
+$('#tp_submit').tappable(function() {
   if((!$('[name=username]').val() || (!$('[name=password]').val()))) {
     alert('Watts needs a username and password.')
     return false;
@@ -390,7 +400,7 @@ $("input[type=range]").change(function(){
 
 
 // removing the user, sending back to form
-$('#clear_user').click(function() {
+$('#clear_user').tappable(function() {
   clearUser();
 });
 
