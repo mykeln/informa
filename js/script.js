@@ -229,16 +229,14 @@ function showForm(){
 // showing comment field if the checkbox is clicked
 $('.check_comment').click(function(){
 	// must do next 3 times to step to the textarea element
-	$(this).next().next().next().slideToggle('fast');
-	
+	$(this).next().slideToggle('fast');
+  
 });
 
 // click handler. checks data submitted for errors, converts to byte data for trainingpeaks
 // this is a terribly bad way to do it. for future versions, make it an each that enumerates
 $('#log_submit').click(function() {
 	
-  //$('#loading_message').slideDown('fast');
-
 	var bodyCompData = [] ;
 	var name;
 	var value;
@@ -397,7 +395,6 @@ $('#clear_user').click(function() {
 });
 
 function clearUser(){
-	clearPersistentData();
 	
   deleteCookie('tp_username');
   deleteCookie('tp_password');
