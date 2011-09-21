@@ -29,7 +29,17 @@ var xmlDateToJavascriptDate = function(xmlDate) {
   }
   var utcDate = Date.UTC(year, month, day, hour, minute, second, (milli || 0));
   return new Date(utcDate);
-}  
+}
+
+// parsing string cookies as boolean for checkbox values
+function parseBool(value) {
+  if (typeof value === "string") {
+     value = value.replace(/^\s+|\s+$/g, "").toLowerCase();
+     if (value === "true" || value === "false")
+       return value === "true";
+  }
+  return; // returns undefined
+}
 
 // simulating a keypress (in informa's case, a decimal)
 function simulateKeyPress(character) {
@@ -50,6 +60,7 @@ function setCookie(name,value,days) {
 // getting a user cookie
 function getCookie(name) {
   var nameEQ = name + "=";
+
   var ca = document.cookie.split(';');
   for(var i=0;i < ca.length;i++) {
     var c = ca[i];
@@ -102,6 +113,12 @@ if((nameSet != null) && (passSet != null)) {
   console.log("No cookie detected. Showing form");
 }
 
+// showing the form, making sure workouts are hidden
+function showForm(){
+  $("#workouts").hide();
+	$("#tp_form").show();
+}
+
 function errorWorkout(message) {
   console.log(message);
   return false;
@@ -109,6 +126,81 @@ function errorWorkout(message) {
 
 // function for parsing the xml data and synthesizing it on the presentation layer
 function showDietForm(){
+	// getting stored values for items if they exist
+	// morning comp
+	var mornWeightSet = getCookie('morn_w');	
+	var mornBfSet = getCookie('morn_bf');
+	var mornBwSet = getCookie('morn_bw');
+	
+	// evening comp
+	var eveWeightSet = getCookie('eve_w');
+	var eveBfSet = getCookie('eve_bf');
+	var eveBwSet = getCookie('eve_bw');
+	
+	// done checkbox state
+	var supplementsDoneSet =  parseBool(getCookie('supplements_done'));
+	var mealsDoneSet =  parseBool(getCookie('meals_done'));
+	var hydratedDoneSet = parseBool(getCookie('hydrated_done'));
+	
+	// trigger checkbox state
+	var supplementsTriggerSet =  parseBool(getCookie('supplements_trigger'));
+	var mealsTriggerSet =  parseBool(getCookie('meals_trigger'));
+	var hydratedTriggerSet =  parseBool(getCookie('hydrated_trigger'));
+	
+	// comments
+	var supplementsCommentSet = getCookie('supplements_comment');
+	var mealsCommentSet = getCookie('meals_comment');
+	var hydratedCommentSet = getCookie('hydrated_comment');
+	var eveCommentSet = getCookie('eve_comment');
+	
+	// sleep quality
+	var sleepSet = getCookie('sleep_quality');
+	if (sleepSet == undefined){
+		sleepSet = 6;
+	}
+	
+	// setting the form state to the stored cookie values
+	// if they don't exist, that's okay, it will just stay with the default
+	// morning comp
+	$('#morn_w').val(mornWeightSet);
+	$('#morn_bf').val(mornBfSet);
+	$('#morn_bw').val(mornBwSet);
+
+	// evening comp
+	$('#eve_w').val(eveWeightSet);
+	$('#eve_bf').val(eveBfSet);
+	$('#eve_bw').val(eveBwSet);
+	
+	// done checkbox state
+	$('#supplements_done').attr('checked',supplementsDoneSet);
+	$('#meals_done').attr('checked',mealsDoneSet);
+	$('#hydrated_done').attr('checked',hydratedDoneSet);
+	
+	// trigger checkbox state
+	$('#supplements_trigger').attr('checked',supplementsTriggerSet);
+	$('#meals_trigger').attr('checked',mealsTriggerSet);
+	$('#hydrated_trigger').attr('checked',hydratedTriggerSet);
+	
+	if (supplementsTriggerSet == true){
+		$('#supplements_comment').show();
+		console.log()
+	}
+	if (mealsTriggerSet == true){
+		$('#meals_comment').show();
+	}
+	if (hydratedTriggerSet == true){
+		$('#hydrated_comment').show();
+	}
+	
+	// comments
+	$('#supplements_comment').val(supplementsCommentSet);
+	$('#meals_comment').val(mealsCommentSet);
+	$('#hydrated_comment').val(hydratedCommentSet);
+	$('#eve_comment').val(eveCommentSet);
+	
+	// sleep quality
+	$('#sleep_quality').val(sleepSet);
+	$('#sleep_counter').html(sleepSet);
 
   // appending the date at the very bottom of the presentation
   $("h4 span").html(todaysDate);
@@ -220,7 +312,7 @@ var emailRegex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4}
 	// redirecting user to the email link
 	window.location.href = to_email;
 
-
+	clearData();
 } else {
 	console.log('whoops, something is wrong with what the user input');
 	alert("Email address isn't in the correct format.")
@@ -229,18 +321,41 @@ var emailRegex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4}
 
 }
 
-// showing the form, making sure workouts are hidden
-function showForm(){
-  $("#workouts").hide();
-	$("#tp_form").show();
-}
-
 // showing comment field if the checkbox is clicked
 $('.check_comment').click(function(){
 	// must do next 3 times to step to the textarea element
 	$(this).next().next().next().slideToggle('fast');
-  
 });
+
+// if data changes, set the cookie
+$('#workouts input[type="number"]').change(function() {
+	var inputChanged = $(this).attr('id');
+	var inputValue = $(this).val();
+	
+	setCookie(inputChanged, inputValue, 9999);
+});
+
+$('#workouts input[type="checkbox"]').change(function() {
+	var inputChanged = $(this).attr('id');
+	var inputValue = $(this).attr('checked');
+		
+	setCookie(inputChanged, inputValue, 9999);
+});
+
+$('#workouts input[type="range"]').change(function() {
+	var inputChanged = $(this).attr('id');
+	var inputValue = $(this).val();
+	
+	setCookie(inputChanged, inputValue, 9999);
+});
+
+$('#workouts textarea').change(function() {
+	var inputChanged = $(this).attr('id');
+	var inputValue = $(this).val();
+	
+	setCookie(inputChanged, inputValue, 9999);
+});
+
 
 
 // click handler. checks data submitted for errors, converts to byte data for trainingpeaks
@@ -379,26 +494,51 @@ $('#tp_submit').click(function() {
 // updates sleep slider
 $("input[type=range]").change(function(){
 	var sleepValue = $("input[type=range]").val();
-	
-
 	$('#sleep_counter').html(sleepValue);
 });
 
 
 // removing the user, sending back to form
 $('#clear_user').click(function() {
+	clearData();
   clearUser();
 });
 
-function clearUser(){
+function clearData() {
+	// getting stored values for items if they exist
+	// morning comp
+	deleteCookie('morn_w');		
+	deleteCookie('morn_bf');
+	deleteCookie('morn_bw');
 	
+	// evening comp
+	deleteCookie('eve_w');
+	deleteCookie('eve_bf');
+	deleteCookie('eve_bw');
+	
+	// done checkbox state
+	deleteCookie('supplements_done');
+	deleteCookie('meals_done');
+	deleteCookie('hydrated_done');
+	
+	// trigger checkbox state
+	deleteCookie('supplements_trigger');
+	deleteCookie('meals_trigger');
+	deleteCookie('hydrated_trigger');
+	
+	// comments
+	deleteCookie('supplements_comment');
+	deleteCookie('meals_comment');	
+	deleteCookie('hydrated_comment');
+	deleteCookie('eve_comment');
+	
+	// sleep quality
+	deleteCookie('sleep_quality');
+}
+
+function clearUser(){
   deleteCookie('tp_username');
   deleteCookie('tp_password');
-
-  // clearing the contents of the workouts div
-  $('#workouts h1').html('');
-  $('#workouts h2').html('');
-  $('#workouts p').html('');
 
   console.log("Removing association with user");
 
@@ -407,7 +547,6 @@ function clearUser(){
   // clearing login form values
   $('[name=username]').val('');
   $('[name=password]').val('');
-
 
   showForm();
 }
