@@ -238,6 +238,7 @@ background-color: #fff;
 text-align: center;
 font: Bold 20px/50px "Helvetica Neue",helvetica,arial,sans-serif;
 color: #444;
+z-index: 99;
 }
 
 #more_information {
@@ -303,6 +304,7 @@ color: #444;
 
 #tp_form {
 	position: absolute;
+	z-index: 1;
 	left: auto;
 	right: auto;
 	-webkit-animation-name: slidedown;
