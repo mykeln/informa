@@ -186,7 +186,12 @@ textarea {
 	
 }
 input[type='number'] {
-	width: 258px;
+	width: 66px;
+	margin-right: 4px;
+}
+
+input[type='number'].last {
+	margin-right: 0;
 }
 
 input[type='range'] {  
