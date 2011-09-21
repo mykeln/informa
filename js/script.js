@@ -232,14 +232,7 @@ var emailRegex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4}
 // showing the form, making sure workouts are hidden
 function showForm(){
   $("#workouts").hide();
-
-	$("#tp_form")
-	  .css('opacity', 0)
-	  .slideDown('slow')
-	  .animate(
-	    { opacity: 1 },
-	    { queue: false, duration: 'slow' }
-	  );
+	$("#tp_form").show();
 }
 
 // showing comment field if the checkbox is clicked

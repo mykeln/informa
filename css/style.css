@@ -176,7 +176,7 @@ color: #444;
 font: Normal 14px/17px "Helvetica Neue",helvetica,arial,sans-serif;
 border-radius: 5px;
 padding: 10px;
-width: 260px;
+width: 258px;
 margin: 10px auto 0px auto;
 }
 textarea {
@@ -285,6 +285,30 @@ color: #444;
 	top: 15px;
 	color: #666;
 }
+
+
+/* animations */
+@-webkit-keyframes slidedown {
+	0% {
+		top: -100px;
+		opacity: 0;
+		-webkit-animation-timing-function: ease-in;
+	}
+	100% {
+		top: 10px;
+		opacity: 1;
+		-webkit-animation-timing-function: ease-out;	
+	}
+}
+
+#tp_form {
+	position: absolute;
+	left: auto;
+	right: auto;
+	-webkit-animation-name: slidedown;
+	-webkit-animation-duration: 500ms;
+}
+
 
 /* CSS MQ */
 
