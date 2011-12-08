@@ -91,6 +91,9 @@ function toggleBackground(state){
 $('input[type="text"]').tappable( function(){ $(this).focus() });
 $('input[type="number"]').tappable( function(){ $(this).focus() });
 $('input[type="password"]').tappable( function(){ $(this).focus() });
+
+$('.fastrespond').tappable( function(){ $(this).attr('checked', !$(this).attr('checked')); });
+
 $('textarea').tappable( function(){ $(this).focus() });
 
 
@@ -329,7 +332,8 @@ var emailRegex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4}
 }
 
 // showing comment field if the checkbox is clicked
-$('.check_comment').click(function(){
+$('.check_comment').tappable(function(){
+	$(this).attr('checked', !$(this).attr('checked'));
 	// must do next 3 times to step to the textarea element
 	$(this).next().next().next().slideToggle('fast');
 });
