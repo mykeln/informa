@@ -87,6 +87,13 @@ function toggleBackground(state){
   }
 }
 
+// attaching tappable to all text elements
+$('input[type="text"]').tappable( function(){ $(this).focus() });
+$('input[type="number"]').tappable( function(){ $(this).focus() });
+$('input[type="password"]').tappable( function(){ $(this).focus() });
+$('textarea').tappable( function(){ $(this).focus() });
+
+
 
 /*
 ////////////////////////////////////////
@@ -360,7 +367,7 @@ $('#workouts textarea').change(function() {
 
 // click handler. checks data submitted for errors, converts to byte data for trainingpeaks
 // this is a terribly bad way to do it. for future versions, make it an each that enumerates
-$('#log_submit').click(function() {
+$('#log_submit').tappable(function() {
 	
 	var bodyCompData = [] ;
 	var name;
@@ -473,7 +480,7 @@ $('#log_submit').click(function() {
 
 
 // click handler. assigns cookie, passes cookie variables to the queryTrainingPeaks function
-$('#tp_submit').click(function() {
+$('#tp_submit').tappable(function() {
   if((!$('[name=username]').val() || (!$('[name=password]').val()))) {
     alert('Informa needs a username and password.')
     return false;
@@ -499,7 +506,7 @@ $("input[type=range]").change(function(){
 
 
 // removing the user, sending back to form
-$('#clear_user').click(function() {
+$('#clear_user').tappable(function() {
 	clearData();
   clearUser();
 });
