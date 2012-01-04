@@ -107,17 +107,25 @@ CORE CODE
 */
 
 // getting cookie values
+/* DEPRECATED: For TrainingPeaks Auth
 var nameSet = getCookie('tp_username');
 var passSet = getCookie('tp_password');
+*/
+
+var email = getCookie('tp_email');
 
 // getting today's date for query AND for displaying
 var todaysDateRaw = new Date();
 var todaysDate = todaysDateRaw.toString('MM-dd-yy');
 
+/* DEPRECATED: For TrainingPeaks Auth
 // checking if cookie has been set. if it has, show the workout. otherwise, show the form.
 if((nameSet != null) && (passSet != null)) {
-  queryTrainingPeaks(nameSet,passSet);
-  console.log("Cookie detected for user: " + nameSet);
+*/
+if((email != null)) {
+//queryTrainingPeaks(nameSet,passSet);
+	showDietForm();
+  console.log("Cookie detected for user: " + email);
 } else {
   showForm();
   console.log("No cookie detected. Showing form");
@@ -229,6 +237,7 @@ function showDietForm(){
 ////////////////////////////////////////////////////
 // FUNCTION TO SEE IF USER EXISTS WHEN LOGGING IN //
 ////////////////////////////////////////////////////
+/* DEPRECATED: For TrainingPeaks Auth
 function queryTrainingPeaks(username,password){
 	// this is used strictly to see if the user exists -- unused for gathering data
 
@@ -273,6 +282,8 @@ function checkData(xml){
     clearUser();
   }
 }
+*/
+
 //////////
 // END //
 /////////
@@ -304,7 +315,8 @@ function submitBodyComp(bodyCompData){
   });
 */
 
-var email = "rick@rickkattouf.com";
+//var email = "rick@rickkattouf.com";
+email = email;
 var subject = "Body composition for " + todaysDate;
 
 // validation checks
@@ -485,20 +497,38 @@ $('#log_submit').tappable(function() {
 
 // click handler. assigns cookie, passes cookie variables to the queryTrainingPeaks function
 $('#tp_submit').tappable(function() {
+/* DEPRECATED: For TrainingPeaks Auth
+	var username = $('[name=username]').val();
+	var password = $('[name=password]').val();
+
   if((!$('[name=username]').val() || (!$('[name=password]').val()))) {
     alert('Informa needs a username and password.')
     return false;
   }
 
-  $('#loading_message').slideDown('fast');
-
-  var username = $('[name=username]').val();
-	var password = $('[name=password]').val();
-
 	setCookie('tp_username', username, 9999);
 	setCookie('tp_password', password, 9999);
 
 	queryTrainingPeaks(username,password);
+
+*/
+
+	$('#loading_message').slideDown('fast');
+
+	var email = $('[name=email]').val();
+	
+	var emailRegex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+	// if email validation checks out, send the email
+	 if(email.length > 0 && emailRegex.test(email)){
+		console.log('sending mail to: ' + email);
+		setCookie('tp_email', email, 9999);
+	
+		showDietForm();
+	} else {
+		alert('There was a problem with the address you entered.')
+		return false;
+	}
 
 });
 
