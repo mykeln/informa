@@ -3,9 +3,6 @@
 
 
 /* TEAM */
-  Owner: Rick Kattouf
-  Site: http://teamkattouf.com
-
   Author: Mykel Nahorniak
   Site: http://karmcity.com
   Twitter: mvkel
