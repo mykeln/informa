@@ -1,4 +1,4 @@
-<? echo "Hello"; ?>
+
 
 ﻿<!doctype html>
 <!--[if IEMobile 7 ]>    <html class="no-js iem7" manifest="default.appcache?v=1"> <![endif]-->
